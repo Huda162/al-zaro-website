@@ -1,0 +1,2634 @@
+{
+	"info": {
+		"_postman_id": "dae53e61-6067-401f-be5b-44b85bef5a76",
+		"name": "Control Panel  Zaro",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23806790"
+	},
+	"item": [
+		{
+			"name": "Sliders",
+			"item": [
+				{
+					"name": "Get All Sliders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/sliders",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"sliders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Slider",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/sliders/20",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"sliders",
+								"20"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Slider Status",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "slider_id",
+									"value": "7",
+									"type": "text"
+								},
+								{
+									"key": "active",
+									"value": "true",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/update_slider_status",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"update_slider_status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Slider",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/sliders/21",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"sliders",
+								"21"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Slider",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "product_id",
+									"value": "100",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "19000",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "description",
+									"value": "test edited desc",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/sliders/21?_method=PUT",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"sliders",
+								"21"
+							],
+							"query": [
+								{
+									"key": "_method",
+									"value": "PUT"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Slider",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/raya co/Downloads/iBufUWDpFfeX1b6SO75u.jpg"
+								},
+								{
+									"key": "image_mobile",
+									"type": "file",
+									"src": "/C:/Users/raya co/Downloads/table.png"
+								},
+								{
+									"key": "data_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "product",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/sliders",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"sliders"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Get All Products Without Pagination",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/all_products",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"all_products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Products With Pagination",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/products?page=2",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/search_product/a",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"search_product",
+								"a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/products/804",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"products",
+								"804"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product Status",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "product_id",
+									"value": "810",
+									"type": "text"
+								},
+								{
+									"key": "available",
+									"value": "false",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/update_product_status",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"update_product_status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product Is Offer Status",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "product_id",
+									"value": "23",
+									"type": "text"
+								},
+								{
+									"key": "is_offer",
+									"value": "false",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/update_product_is_offer_status",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"update_product_is_offer_status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product Order Number",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"order_number\": 1\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/products/4/order-number",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"products",
+								"4",
+								"order-number"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name_ar",
+									"value": "test2",
+									"type": "text"
+								},
+								{
+									"key": "name_en",
+									"value": "name en",
+									"type": "text"
+								},
+								{
+									"key": "name_he",
+									"value": "name hebraw",
+									"type": "text"
+								},
+								{
+									"key": "description_ar",
+									"value": "test desc",
+									"type": "text"
+								},
+								{
+									"key": "description_en",
+									"value": "description english",
+									"type": "text"
+								},
+								{
+									"key": "description_he",
+									"value": "description hebrow",
+									"type": "text"
+								},
+								{
+									"key": "price_nis",
+									"value": "190",
+									"type": "text"
+								},
+								{
+									"key": "price_jod",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "price_usd",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "image[0]",
+									"type": "file",
+									"src": "/F:/Downloads/pexels-fotios-photos-1540258.jpg"
+								},
+								{
+									"key": "image[1]",
+									"type": "file",
+									"src": "/F:/Downloads/pexels-fotios-photos-1540258.jpg"
+								},
+								{
+									"key": "category_id",
+									"value": "29",
+									"type": "text"
+								},
+								{
+									"key": "available",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "size[0]",
+									"value": "Xl",
+									"type": "text"
+								},
+								{
+									"key": "size[1]",
+									"value": "X",
+									"type": "text"
+								},
+								{
+									"key": "size_price_nis[0]",
+									"value": "20",
+									"type": "text"
+								},
+								{
+									"key": "size_price_nis[1]",
+									"value": "30",
+									"type": "text"
+								},
+								{
+									"key": "size_price_usd[0]",
+									"value": "200",
+									"type": "text"
+								},
+								{
+									"key": "size_price_usd[1]",
+									"value": "300",
+									"type": "text"
+								},
+								{
+									"key": "color[0]",
+									"value": "0xff459865",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "color[1]",
+									"value": "0xff455565",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "color_image[0]",
+									"type": "file",
+									"src": [],
+									"disabled": true
+								},
+								{
+									"key": "color_image[1]",
+									"type": "file",
+									"src": "/C:/Users/raya co/Downloads/miscellaneous.png",
+									"disabled": true
+								},
+								{
+									"key": "brand_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "discount_percentage",
+									"value": "25",
+									"type": "text"
+								},
+								{
+									"key": "is_offer",
+									"value": "true",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/products",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name_ar",
+									"value": "test2 88558855885",
+									"type": "text"
+								},
+								{
+									"key": "name_en",
+									"value": "name en",
+									"type": "text"
+								},
+								{
+									"key": "name_he",
+									"value": "name hebraw",
+									"type": "text"
+								},
+								{
+									"key": "description_ar",
+									"value": "test desc",
+									"type": "text"
+								},
+								{
+									"key": "description_en",
+									"value": "description english",
+									"type": "text"
+								},
+								{
+									"key": "description_he",
+									"value": "description hebrow",
+									"type": "text"
+								},
+								{
+									"key": "price_nis",
+									"value": "190",
+									"type": "text"
+								},
+								{
+									"key": "price_jod",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "price_usd",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "image[0]",
+									"type": "file",
+									"src": "sAWcUhlMv/Shot48.00000.png"
+								},
+								{
+									"key": "image[1]",
+									"type": "file",
+									"src": "/C:/Users/raya co/Downloads/New Project (15).png",
+									"disabled": true
+								},
+								{
+									"key": "category_id",
+									"value": "29",
+									"type": "text"
+								},
+								{
+									"key": "available",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "size[0]",
+									"value": "Xl",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "size[1]",
+									"value": "X",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "size_price_nis[0]",
+									"value": "20",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "size_price_nis[1]",
+									"value": "30",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "size_price_usd[0]",
+									"value": "200",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "size_price_usd[1]",
+									"value": "300",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "color[0]",
+									"value": "0xff459865",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "color[1]",
+									"value": "0xff455565",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "color_image[0]",
+									"type": "file",
+									"src": "/C:/Users/raya co/Downloads/fashion (2).png",
+									"disabled": true
+								},
+								{
+									"key": "color_image[1]",
+									"type": "file",
+									"src": "/C:/Users/raya co/Downloads/miscellaneous.png",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/products/57?_method=PUT",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"products",
+								"57"
+							],
+							"query": [
+								{
+									"key": "_method",
+									"value": "PUT"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/products/53",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"products",
+								"53"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product Image",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/product-image/344",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"product-image",
+								"344"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product Color",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/product-color/8",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"product-color",
+								"8"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Add Order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "city",
+									"value": "الخليل",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "059532689",
+									"type": "text"
+								},
+								{
+									"key": "geoarea",
+									"value": "الضفة الغربية",
+									"type": "text"
+								},
+								{
+									"key": "delivery_price",
+									"value": "20",
+									"type": "text"
+								},
+								{
+									"key": "area",
+									"value": "رأس الجورة",
+									"type": "text"
+								},
+								{
+									"key": "near",
+									"value": "عين ساره",
+									"description": "q",
+									"type": "text"
+								},
+								{
+									"key": "note",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "sum",
+									"value": "100",
+									"type": "text"
+								},
+								{
+									"key": "lattitude",
+									"value": "373.4135",
+									"type": "text"
+								},
+								{
+									"key": "longitude",
+									"value": "38.132183",
+									"type": "text"
+								},
+								{
+									"key": "product_id[0]",
+									"value": "131",
+									"type": "text"
+								},
+								{
+									"key": "price[0]",
+									"value": "10",
+									"type": "text"
+								},
+								{
+									"key": "qty[0]",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/add_order",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"add_order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Order",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/products/52",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"products",
+								"52"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/orders?page=3",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"orders"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filter Orders Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/filter_orders/in_progress",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"filter_orders",
+								"in_progress"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Order",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/orders/224",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"orders",
+								"224"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Order",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/delete_user/19",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"delete_user",
+								"19"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Order Status",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "status",
+									"value": "done",
+									"type": "text"
+								},
+								{
+									"key": "order_id",
+									"value": "224",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/update_order_status",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"update_order_status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Order Salesman ID",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "status",
+									"value": "تم الاستلام",
+									"type": "text"
+								},
+								{
+									"key": "order_id",
+									"value": "182",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/update_order_status",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"update_order_status"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Brands",
+			"item": [
+				{
+					"name": "Get Single Brands",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/brands/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"brands",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Brands",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/brands",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"brands"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Brand",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "new brand",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/raya co/Downloads/iBufUWDpFfeX1b6SO75u.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/brands",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"brands"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Brand",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "product_id",
+									"value": "100",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "19000",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "description",
+									"value": "test edited desc",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/sliders/21?_method=PUT",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"sliders",
+								"21"
+							],
+							"query": [
+								{
+									"key": "_method",
+									"value": "PUT"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Banners",
+			"item": [
+				{
+					"name": "Get Banners",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/banners",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"banners"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show Specefic Banner",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/banners/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"banners",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Banner",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "banner_100 test",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/raya co/Downloads/table.png"
+								},
+								{
+									"key": "image_mobile",
+									"type": "file",
+									"src": "/C:/Users/raya co/Downloads/research-analysis.png"
+								},
+								{
+									"key": "title_ar",
+									"value": "fghfg",
+									"type": "text"
+								},
+								{
+									"key": "title_en",
+									"value": "sdffgh",
+									"type": "text"
+								},
+								{
+									"key": "title_he",
+									"value": "sdf",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "category",
+									"type": "text"
+								},
+								{
+									"key": "data_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "image_en",
+									"type": "file",
+									"src": "/C:/Users/raya co/Downloads/لوجو-02.png"
+								},
+								{
+									"key": "image_mobile_en",
+									"type": "file",
+									"src": "/C:/Users/raya co/Downloads/New Project (15).png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/banners",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"banners"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Banner",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "banner_1",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/raya co/Downloads/xBsrL48YpMN6C6weoGTjeB6Hcz0Iwc1YEz8rPtLk.mp4",
+									"disabled": true
+								},
+								{
+									"key": "image_mobile",
+									"type": "file",
+									"src": "/C:/Users/raya co/Downloads/26Q2z7F9upAYizArfuocYerHbupafquCCprjE4XP.jpg",
+									"disabled": true
+								},
+								{
+									"key": "title_ar",
+									"value": "fghfghfghfgh",
+									"type": "text"
+								},
+								{
+									"key": "title_en",
+									"value": "hfghs",
+									"type": "text"
+								},
+								{
+									"key": "title_he",
+									"value": "fgh",
+									"type": "text"
+								},
+								{
+									"key": "data_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "product",
+									"type": "text"
+								},
+								{
+									"key": "image_mobile_en",
+									"type": "file",
+									"src": "/C:/Users/raya co/Downloads/WhatsApp Image 2024-06-10 at 12.09.40 PM.jpeg"
+								},
+								{
+									"key": "image_en",
+									"type": "file",
+									"src": "/C:/Users/raya co/Downloads/New Project (11).png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/banners/1?_method=PUT",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"banners",
+								"1"
+							],
+							"query": [
+								{
+									"key": "_method",
+									"value": "PUT"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "Get All Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/categories",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/search_category/a",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"search_category",
+								"a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name_ar",
+									"value": "test category",
+									"type": "text"
+								},
+								{
+									"key": "name_en",
+									"value": "test category english",
+									"type": "text"
+								},
+								{
+									"key": "name_he",
+									"value": "test category hebrow",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/D:/Downloads new/Screenshot_1726736374.png"
+								},
+								{
+									"key": "parent_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/categories",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/categories/13",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"categories",
+								"13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name_ar",
+									"value": "test edited",
+									"type": "text"
+								},
+								{
+									"key": "name_en",
+									"value": "test edited englihs",
+									"type": "text"
+								},
+								{
+									"key": "name_he",
+									"value": "test editedhe",
+									"type": "text"
+								},
+								{
+									"key": "parent_id",
+									"value": "18",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/categories/29?_method=PUT",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"categories",
+								"29"
+							],
+							"query": [
+								{
+									"key": "_method",
+									"value": "PUT"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Category",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/categories/92",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"categories",
+								"92"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Feedback",
+			"item": [
+				{
+					"name": "Get Feedbacks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/feedbacks",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"feedbacks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Feedback Details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/feedbacks/13",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"feedbacks",
+								"13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Feedback",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "customer_name",
+									"value": "hazem salah",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/raya co/Downloads/logo (2).png"
+								},
+								{
+									"key": "body",
+									"value": "body body body",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/feedbacks",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"feedbacks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Feedback",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "customer_name",
+									"value": "test edited 1",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/raya co/Downloads/26Q2z7F9upAYizArfuocYerHbupafquCCprjE4XP.jpg"
+								},
+								{
+									"key": "body",
+									"value": "body edited",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/feedbacks/1?_method=PUT",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"feedbacks",
+								"1"
+							],
+							"query": [
+								{
+									"key": "_method",
+									"value": "PUT"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Feedback",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/feedbacks/2",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"feedbacks",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "About Us",
+			"item": [
+				{
+					"name": "Get About Us",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/about",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"about"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Specefic About Us",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/about/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"about",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit About Us",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "body_ar",
+									"value": "<p><span style='color: rgb(77, 81, 86); font-family: \"Helvetica Neue\", \"Noto Naskh Arabic UI\", Arial, sans-serif; font-size: medium; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: right; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;' id=\"isPasted\">متخصصون في بيع الاجهزة&nbsp;</span><em style='font-weight: bold; font-style: normal; color: rgb(95, 99, 104); font-family: \"Helvetica Neue\", \"Noto Naskh Arabic UI\", Arial, sans-serif; font-size: medium; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: right; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;'>الكهربائية</em><span style='color: rgb(77, 81, 86); font-family: \"Helvetica Neue\", \"Noto Naskh Arabic UI\", Arial, sans-serif; font-size: medium; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: right; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;'>&nbsp;قسم خاص بالنثريات كل مايلزم المنزل متخصصون في البيع الاون لاين يتوفر خدمة توصيل لجميع انحاء فلسطين.</span></p><p><br></p><p data-f-id=\"pbf\" style=\"text-align: center; font-size: 14px; margin-top: 30px; opacity: 0.65; font-family: sans-serif;\">Powered by <a href=\"https://www.froala.com/wysiwyg-editor?pb=1\" title=\"Froala Editor\">Froala Editor</a></p>",
+									"type": "text"
+								},
+								{
+									"key": "body_en",
+									"value": "<p><span style='color: rgb(77, 81, 86); font-family: \"Helvetica Neue\", \"Noto Naskh Arabic UI\", Arial, sans-serif; font-size: medium; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: right; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;' id=\"isPasted\">متخصصون في بيع الاجهزة&nbsp;</span><em style='font-weight: bold; font-style: normal; color: rgb(95, 99, 104); font-family: \"Helvetica Neue\", \"Noto Naskh Arabic UI\", Arial, sans-serif; font-size: medium; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: right; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;'>الكهربائية</em><span style='color: rgb(77, 81, 86); font-family: \"Helvetica Neue\", \"Noto Naskh Arabic UI\", Arial, sans-serif; font-size: medium; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: right; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;'>&nbsp;قسم خاص بالنثريات كل مايلزم المنزل متخصصون في البيع الاون لاين يتوفر خدمة توصيل لجميع انحاء فلسطين.</span></p><p><br></p><p data-f-id=\"pbf\" style=\"text-align: center; font-size: 14px; margin-top: 30px; opacity: 0.65; font-family: sans-serif;\">Powered by <a href=\"https://www.froala.com/wysiwyg-editor?pb=1\" title=\"Froala Editor\">Froala Editor</a></p>",
+									"type": "text"
+								},
+								{
+									"key": "body_he",
+									"value": "<p><span style='color: rgb(77, 81, 86); font-family: \"Helvetica Neue\", \"Noto Naskh Arabic UI\", Arial, sans-serif; font-size: medium; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: right; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;' id=\"isPasted\">متخصصون في بيع الاجهزة&nbsp;</span><em style='font-weight: bold; font-style: normal; color: rgb(95, 99, 104); font-family: \"Helvetica Neue\", \"Noto Naskh Arabic UI\", Arial, sans-serif; font-size: medium; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: right; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;'>الكهربائية</em><span style='color: rgb(77, 81, 86); font-family: \"Helvetica Neue\", \"Noto Naskh Arabic UI\", Arial, sans-serif; font-size: medium; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: right; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;'>&nbsp;قسم خاص بالنثريات كل مايلزم المنزل متخصصون في البيع الاون لاين يتوفر خدمة توصيل لجميع انحاء فلسطين.</span></p><p><br></p><p data-f-id=\"pbf\" style=\"text-align: center; font-size: 14px; margin-top: 30px; opacity: 0.65; font-family: sans-serif;\">Powered by <a href=\"https://www.froala.com/wysiwyg-editor?pb=1\" title=\"Froala Editor\">Froala Editor</a></p>",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/raya co/Downloads/iBufUWDpFfeX1b6SO75u.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/about/1?_method=PUT",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"about",
+								"1"
+							],
+							"query": [
+								{
+									"key": "_method",
+									"value": "PUT"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/users",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/search_user/hussam",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"search_user",
+								"hussam"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/show_user/50",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"show_user",
+								"50"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "hazem salah",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "0595324689",
+									"type": "text"
+								},
+								{
+									"key": "role_id",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/register",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "hazem_edited",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "0595324689",
+									"type": "text"
+								},
+								{
+									"key": "role_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "user_id",
+									"value": "71",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/update_user",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"update_user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/delete_user/70",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"delete_user",
+								"70"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Copons",
+			"item": [
+				{
+					"name": "Add Copon",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "hazem",
+									"type": "text"
+								},
+								{
+									"key": "value",
+									"value": "20",
+									"type": "text"
+								},
+								{
+									"key": "code",
+									"value": "zezo",
+									"type": "text"
+								},
+								{
+									"key": "end_date",
+									"value": "2024-06-30",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/copons",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"copons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Coupons",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/copons",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"copons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Coupon",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "copon editeed",
+									"type": "text"
+								},
+								{
+									"key": "value",
+									"value": "20",
+									"type": "text"
+								},
+								{
+									"key": "end_date",
+									"value": "2024-06-30",
+									"type": "text"
+								},
+								{
+									"key": "code",
+									"value": "zezo edited",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/copons/2?_method=PUT",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"copons",
+								"2"
+							],
+							"query": [
+								{
+									"key": "_method",
+									"value": "PUT"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Coupon",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/copons/4",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"copons",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Coupon",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/copons/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"copons",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Socials",
+			"item": [
+				{
+					"name": "Get All Socials",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/socials",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"socials"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Socail",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "facebook1",
+									"type": "text"
+								},
+								{
+									"key": "url",
+									"value": "facbook-edited.com",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "test edited desc",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/socials/2?_method=PUT",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"socials",
+								"2"
+							],
+							"query": [
+								{
+									"key": "_method",
+									"value": "PUT"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Social",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/socials/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"socials",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Social",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/socials/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"socials",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Settings",
+			"item": [
+				{
+					"name": "Get Settings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/settings",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"settings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Settings",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "is_arabic",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "is_english",
+									"value": "false",
+									"type": "text"
+								},
+								{
+									"key": "is_hebrow",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "is_nis",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "is_jod",
+									"value": "true",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/update-settings",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"update-settings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Langauge",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "hebrow",
+									"type": "text"
+								},
+								{
+									"key": "code",
+									"value": "he",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/add_language",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"add_language"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Langauge",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "hebrow11",
+									"type": "text"
+								},
+								{
+									"key": "code",
+									"value": "he",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/edit_language/3",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"edit_language",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Currency",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "dollar",
+									"type": "text"
+								},
+								{
+									"key": "code",
+									"value": "usd",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/add_currency",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"add_currency"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Currency",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "doollllllar",
+									"type": "text"
+								},
+								{
+									"key": "code",
+									"value": "usd",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/edit_currency/2",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"edit_currency",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get Dashboard",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/dashboard",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"dashboard"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "phone",
+							"value": "123",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URL}}/login",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "https://perfectadv.ps/zaro/api",
+			"type": "string"
+		}
+	]
+}

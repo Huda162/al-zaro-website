@@ -1,0 +1,30 @@
+$primary: #224153;
+$secondary: #1f05e6;
+$light: #e6f1fc;
+$dark: #181414;
+$blue-light :#e6f1fc;
+$font-family-base: 'Roboto', sans-serif;
+
+$headings-font-family: 'Jost', sans-serif;
+
+$body-color: #757575;
+
+$headings-color: $dark;
+
+$headings-font-weight: 500;
+
+$display-font-weight: 600;
+
+$enable-responsive-font-sizes: true;
+
+$border-radius: 10px;
+
+$border-radius-sm: $border-radius;
+
+$border-radius-lg: $border-radius;
+
+$link-decoration: none;
+
+$enable-negative-margins: true;
+
+@import "bootstrap/scss/bootstrap";
