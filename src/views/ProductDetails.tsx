@@ -225,7 +225,7 @@ export default function ProductDetails() {
                     </>
                   ))}
                 <div className="row gap-3 justify-content-center justify-content-lg-start mb-4">
-                  {product?.category_id === 2 ? (
+                  {product?.category_id === 5 ? (
                     <div className="w-90">
                       {product?.spec_tables?.map((table: any) => (
                         <div key={table.id} className="mt-1">
@@ -260,13 +260,13 @@ export default function ProductDetails() {
                                           fontWeight: 600,
                                         }}
                                       >
-                                        {col.name}
+                                        {i18n.language === 'en' ? col.name_en : col.name}
                                         {col.unit && (
                                           <span
                                             style={{
                                               display: "block",
                                               fontSize: "0.8rem",
-                                              color: "#eaf3e0",
+                                              color: "gray",
                                               fontWeight: 400,
                                             }}
                                           >
@@ -290,8 +290,9 @@ export default function ProductDetails() {
                                         style={{
                                           fontWeight: 600,
                                           color: "#333",
+                                          textWrap:'nowrap'
                                         }}
-                                        className="bg-light"
+                                        className="bg-light "
                                       >
                                         {row.label}
                                       </td>
@@ -309,7 +310,7 @@ export default function ProductDetails() {
                         </div>
                       ))}
                     </div>
-                  ) : product?.category_id === 5 ? (
+                  ) : product?.category_id === 2 || product?.category_id === 4 ? (
                     <>
                       {productSpecifications?.map(
                         (item, index) =>
@@ -369,11 +370,15 @@ export default function ProductDetails() {
                       role="tabpanel"
                       aria-labelledby="ex1-tab-1"
                     >
-                      <p>
-                        {i18n.language == "ar"
-                          ? product?.description_ar
-                          : product?.description_en}
-                      </p>
+<p>
+  <div 
+    dangerouslySetInnerHTML={{ 
+      __html: i18n.language === "ar" 
+        ? product?.description_ar || "" 
+        : product?.description_en || "" 
+    }} 
+  />
+</p>
                     </div>
                   </div>
                 </div>

@@ -8,191 +8,169 @@ import useFetchData from "../hooks/general/useFetchData";
 import { useTranslation } from "react-i18next";
 import Footer from "../components/Footer";
 
+// ── Types ─────────────────────────────────────────────────────────────────────
+
+interface Category {
+    id: number | string;
+    name_en: string;
+    name_ar: string;
+    image: string;
+    productsCounts?: number;
+}
+
+interface LayoutConfig {
+    col: string;
+}
+
+interface CategoryGroup {
+    items: Category[];
+    patternIndex: number;
+}
+
+interface CategoryCardProps {
+    category: Category;
+    col: string;
+    lang: string;
+    t: (key: string) => string;
+}
+
+// ── Layout helpers ────────────────────────────────────────────────────────────
+
+function getGroupLayouts(groupIndex: number): LayoutConfig[] {
+    const patterns: LayoutConfig[][] = [
+        // 0: large | small | small
+        [{ col: "col-lg-6" }, { col: "col-lg-3" }, { col: "col-lg-3" }],
+        // 1: small | small | large
+        [{ col: "col-lg-3" }, { col: "col-lg-3" }, { col: "col-lg-6" }],
+        // 2: equal thirds
+        [{ col: "col-lg-4" }, { col: "col-lg-4" }, { col: "col-lg-4" }],
+        // 3: small | large | small
+        [{ col: "col-lg-3" }, { col: "col-lg-6" }, { col: "col-lg-3" }],
+        // 4: two halves
+        [{ col: "col-lg-6" }, { col: "col-lg-6" }],
+        // 5: wide | narrow | wide
+        [{ col: "col-lg-5" }, { col: "col-lg-2" }, { col: "col-lg-5" }],
+        // 6: four equal quarters
+        [{ col: "col-lg-3" }, { col: "col-lg-3" }, { col: "col-lg-3" }, { col: "col-lg-3" }],
+    ];
+
+    return patterns[groupIndex % patterns.length];
+}
+
+const PATTERN_SIZES = [3, 3, 3, 3, 2, 3, 4];
+
+function groupCategories(categories: Category[]): CategoryGroup[] {
+    const groups: CategoryGroup[] = [];
+    let i = 0;
+    let patternIndex = 0;
+
+    while (i < categories.length) {
+        const size = PATTERN_SIZES[patternIndex % PATTERN_SIZES.length];
+        const slice = categories.slice(i, i + size);
+        groups.push({ items: slice, patternIndex });
+        i += size;
+        patternIndex++;
+    }
+
+    return groups;
+}
+
+// ── Card ──────────────────────────────────────────────────────────────────────
+
+function CategoryCard({ category, col, lang, t }: CategoryCardProps) {
+    const name = lang === "ar" ? category.name_ar : category.name_en;
+
+    return (
+        <div className={`${col} grid__item`}>
+            <div className="position-relative overflow-hidden mb-4">
+                <div
+                    className="category-bg d-flex align-items-center justify-content-center position-relative p-1"
+                    style={{
+                        backgroundImage: `url(${category.image})`,
+                        backgroundSize: "cover",
+                        backgroundRepeat: "no-repeat",
+                        backgroundPosition: "center",
+                    }}
+                >
+                    <Link
+                        to={`/products/${category.id}`}
+                        className="category-link d-flex flex-column align-items-center justify-content-center rounded"
+                    >
+                        <h1 className="font-size-1-1 m-0">
+                            {name}
+                        </h1>
+                        <span className="banner-link-text">{t("Browse")}</span>
+                    </Link>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+// ── Page ──────────────────────────────────────────────────────────────────────
 
 export default function Categories() {
     useGSAP(() => {
-        useGSAPAnimation()
+        useGSAPAnimation();
+        useCategoriesAnimation();
+    });
 
-        useCategoriesAnimation()
-    })
+    const { data } = useFetchData({ endpoint: "categories", params: "" });
+    const categories: Category[] = data?.categories ?? [];
+    const { t, i18n } = useTranslation();
 
-    const { data } = useFetchData({ endpoint: 'categories', params: '' })
-    let category = data?.categories
-    const { t, i18n } = useTranslation()
-
+    const groups = groupCategories(categories);
 
     return (
-        <div style={{ background: '#181414' }}>
+        <div style={{ background: "#181414" }}>
             <StickyHeader />
+
+            <style>{`
+                /* Uniform height for all cards */
+                .category-bg {
+                    height: 320px;
+                    background-position: center;
+                }
+
+                @media (max-width: 991px) {
+                    .category-bg { height: 250px; }
+                }
+                @media (max-width: 575px) {
+                    .category-bg { height: 200px; }
+                }
+            `}</style>
+
             <div className="position-relative d-flex justify-content-center align-items-center flex-grow-1">
-                <div className="w-100 clip clip-full h-0 overflow-hidden bg-no-repeat"></div>
+                <div className="w-100 clip clip-full h-0 overflow-hidden bg-no-repeat" />
             </div>
+
             <div className="container">
                 <SectionTitle title={t("Categories")} subTitle={t("Browse Categories")} />
-                <div className="row">
-                    <div className="col-xl-8">
-                        <div className="row">
-                            <div className="col-lg-8 grid__item">
-                                <div className="position-relative overflow-hidden mb-4">
-                                    <div className="category-bg d-flex align-items-center justify-content-center position-relative p-1 category-bg-responsive-1"
-                                        style={{
-                                            backgroundImage: `url(${category?.[0]?.image})`,
-                                            backgroundSize: 'cover',
-                                            backgroundRepeat: 'no-repeat'
-                                        }}>
-                                        <Link to={`/products/${category?.[0]?.id}`} className="category-link d-flex flex-column align-items-center justify-content-center w-[10rem] h-[4rem] rounded">
-                                            <h1 className="font-size-1-1 m-0">
-                                                {i18n.language == 'ar' ? category?.[0].name_ar : category?.[0].name_en}
-                                            </h1>
-                                            {/* <h4 className="cat-sub-title">{t("products")}({category?.[0]?.productsCounts})</h4> */}
-                                            <span className="banner-link-text">{t("Browse")}</span>
-                                        </Link>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-lg-4 grid__item">
-                                <div className="position-relative overflow-hidden mb-4">
-                                    <div className="category-bg d-flex align-items-center justify-content-center position-relative p-1 category-bg-responsive-1"
-                                        style={{
-                                            backgroundImage: `url(${category?.[1]?.image})`,
-                                            backgroundSize: 'cover',
-                                            backgroundRepeat: 'no-repeat'
 
-                                        }}>
-                                        <Link to={`/products/${category?.[1]?.id}`} className="category-link d-flex flex-column align-items-center justify-content-center w-[10rem] h-[4rem] rounded">
-                                            <h1 className="font-size-1-1 m-0 m-0">
-                                                {i18n.language == 'ar' ? category?.[1].name_ar : category?.[1].name_en}
-                                            </h1>
-                                            {/* <h4 className="cat-sub-title">{t("products")}({category?.[1]?.productsCounts})</h4> */}
-                                            <span className="banner-link-text">{t("Browse")}</span>
-                                        </Link>
-                                    </div>
-                                </div></div>
-                            <div className="col-lg-4 grid__item">
-                                <div className="position-relative overflow-hidden mb-4">
-                                    <div className="category-bg d-flex align-items-center justify-content-center position-relative p-1 category-bg-responsive-2"
-                                        style={{
-                                            backgroundImage: `url(${category?.[2]?.image})`,
-                                            backgroundSize: 'cover',
-                                            backgroundRepeat: 'no-repeat'
-                                        }}>
-                                        <Link to={`/products/${category?.[2]?.id}`} className="category-link d-flex flex-column align-items-center justify-content-center w-[10rem] h-[4rem] rounded">
-                                            <h1 className="font-size-1-1 m-0">
-                                                {i18n.language == 'ar' ? category?.[2].name_ar : category?.[2].name_en}
-                                            </h1>
-                                            {/* <h4 className="cat-sub-title">{t("products")}({category?.[2]?.productsCounts})</h4> */}
-                                            <span className="banner-link-text">{t("Browse")}</span>
-                                        </Link>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-lg-8 grid__item">
-                                <div className="position-relative overflow-hidden mb-4">
-                                    <div className="category-bg d-flex align-items-center justify-content-center position-relative p-1 category-bg-responsive-2"
-                                        style={{
-                                            backgroundImage: `url(${category?.[3]?.image})`,
-                                            backgroundSize: 'cover',
-                                            backgroundRepeat: 'no-repeat'
-                                        }}>
-                                        <Link to={`/products/${category?.[3]?.id}`} className="category-link d-flex flex-column align-items-center justify-content-center w-[10rem] h-[4rem] rounded">
-                                            <h1 className="font-size-1-1 m-0">
-                                                {i18n.language == 'ar' ? category?.[3].name_ar : category?.[3].name_en}
-                                            </h1>
-                                            {/* <h4 className="cat-sub-title">{t("products")}({category?.[3]?.productsCounts})</h4> */}
-                                            <span className="banner-link-text">{t("Browse")}</span>
+                {groups.map((group, groupIdx) => {
+                    const layouts = getGroupLayouts(group.patternIndex);
 
-                                        </Link>
-                                    </div>
-                                </div>
-                            </div>
+                    return (
+                        <div className="row" key={groupIdx}>
+                            {group.items.map((cat, itemIdx) => {
+                                const layout: LayoutConfig = layouts[itemIdx] ?? { col: "col-lg-4" };
 
+                                return (
+                                    <CategoryCard
+                                        key={cat.id}
+                                        category={cat}
+                                        col={layout.col}
+                                        lang={i18n.language}
+                                        t={t}
+                                    />
+                                );
+                            })}
                         </div>
-                    </div>
-                    <div className="col-xl-4">
-                        <div className="row">
-                            <div className="col-xl-12 grid__item">
-                                <div className="position-relative overflow-hidden mb-4">
-                                    <div className="category-bg d-flex align-items-center justify-content-center position-relative p-1 category-bg-responsive-2"
-                                        style={{
-                                            backgroundImage: `url(${category?.[4]?.image})`,
-                                            backgroundSize: 'cover',
-                                            backgroundRepeat: 'no-repeat'
-                                        }}>
-                                        <Link to={`/products/${category?.[4]?.id}`} className="category-link d-flex flex-column align-items-center justify-content-center w-[10rem] h-[4rem] rounded">
-                                            <h1 className="font-size-1-1 m-0">
-                                                {i18n.language == 'ar' ? category?.[4].name_ar : category?.[4].name_en}
-                                            </h1>
-                                            {/* <h4 className="cat-sub-title">{t("products")}({category?.[4]?.productsCounts})</h4> */}
-                                            <span className="banner-link-text">{t("Browse")}</span>
-                                        </Link>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div className="col-xl-12 grid__item">
-                                <div className="position-relative overflow-hidden mb-4">
-                                    <div className="category-bg d-flex align-items-center justify-content-center position-relative p-1 category-bg-responsive-1"
-                                        style={{
-                                            backgroundImage: `url(${category?.[5]?.image})`,
-                                            backgroundSize: 'cover',
-                                            backgroundRepeat: 'no-repeat'
-
-                                        }}>
-                                        <Link to={`/products/${category?.[5]?.id}`} className="category-link d-flex flex-column align-items-center justify-content-center w-[10rem] h-[4rem] rounded">
-                                            <h1 className="font-size-1-1 m-0">
-                                                {i18n.language == 'ar' ? category?.[5].name_ar : category?.[5].name_en}
-                                            </h1>
-                                            {/* <h4 className="cat-sub-title">{t("products")}({category?.[5]?.productsCounts})</h4> */}
-                                            <span className="banner-link-text">{t("Browse")}</span>
-                                        </Link>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* <div className="col-xl-4">
-                                <div className="d-flex align-items-center justify-content-center"
-                                    style={{
-                                        backgroundImage: 'url(http://ecoheat.like-themes.com/wp-content/uploads/2024/06/type_04-500x500.jpg)',
-                                        height: '300px',
-                                        position: 'relative',
-                                        padding: '5px',
-                                        marginBottom: '1.5rem',
-                                        backgroundSize: 'cover',
-                                        backgroundRepeat: 'no-repeat'
-
-                                    }}>
-                                    <div className="category-link d-flex flex-column align-items-center justify-content-center w-[10rem] h-[4rem] rounded">
-                                        <h1 style={{ fontSize: '1.1rem' }}>
-                                            Fireplaces
-                                        </h1>
-                                        <h4 style={{ fontSize: '0.85rem', opacity: '90%' }}>sub title</h4>
-                                        <span className="banner-link-text">Browse</span>
-                                    </div>
-                                </div>
-                                <div className="d-flex align-items-center justify-content-center"
-                                    style={{
-                                        backgroundImage: 'url(http://ecoheat.like-themes.com/wp-content/uploads/2024/06/blog_01.jpg)',
-                                        height: '500px',
-                                        position: 'relative',
-                                        padding: '5px',
-                                        backgroundSize: 'cover',
-                                        backgroundRepeat: 'no-repeat'
-                                    }}>
-                                    <div className="category-link d-flex flex-column align-items-center justify-content-center w-[10rem] h-[4rem] rounded">
-                                        <h1 style={{ fontSize: '1.1rem' }}>
-                                            Fireplaces
-                                        </h1>
-                                        <h4 style={{ fontSize: '0.85rem', opacity: '90%' }}>sub title</h4>
-                                        <span className="banner-link-text">Browse</span>
-                                    </div>
-                                </div>
-                            </div> */}
-                        </div>
-                    </div>
-                </div>
+                    );
+                })}
             </div>
 
             <Footer />
         </div>
-    )
+    );
 }
