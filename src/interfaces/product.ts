@@ -13,34 +13,40 @@ export interface CategoryName {
     image: string
     parent_id: number
 }
-
-export interface Prdouct {
-    id: number
-    name_ar: string
-    name_en: string
-    name_he: string
-    description_ar: string
-    description_en: string
-    description_he: string
-    price_nis: number
-    price_usd: number
-    price_jod: number
-    category_id: number
-    stove_power: string
-    weight: string
-    dimension: string
-    glass: string
-    heating_area: string
-    door_opening: string
-    brand_id: null,
-    discount_percentage: number
-    points: null,
-    available: boolean
-    is_offer: boolean
-    ordered_number: number
-    order_number: number
-    images: Image[]
-    category_name: CategoryName
-    spec_tables:[]
-
-}
+export interface ProductColor {
+    id: number;
+    product_id: string;
+    color: string;
+    color_image: string;
+  }
+export interface Product {
+    id: number;
+    name_ar: string;
+    name_en: string;
+    name_he: string;
+    description_ar: string;
+    description_en: string;
+    description_he: string;
+    price_nis: string;
+    price_usd: string;
+    price_jod: string;
+    category_id: string;
+    stove_power: string | null;
+    weight: string | null;
+    dimension: string | null;
+    glass: string | null;
+    heating_area: string | null;
+    door_opening: string | null;
+    brand_id: number | null;
+    discount_percentage: string;
+    points: number | null;
+    available: string;
+    is_offer: string;
+    ordered_number: string;
+    order_number: string;
+    images: Image[];
+    category_name: CategoryName;
+    product_sizes: any[];
+    product_colors: ProductColor[];
+    spec_tables: any[];
+  }

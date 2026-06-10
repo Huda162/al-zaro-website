@@ -11,6 +11,7 @@ import { useTranslation } from "react-i18next";
 import "react-inner-image-zoom/lib/InnerImageZoom/styles.css";
 import ProductCard from "../components/ProductCard";
 import Footer from "../components/Footer";
+import { Image, ProductColor } from "../interfaces/product";
 
 export default function ProductDetails() {
   const param = useParams();
@@ -18,9 +19,12 @@ export default function ProductDetails() {
     endpoint: `products/${param.id}`,
     params: "",
   });
-  let product = data?.product;
-  let relatedProducts = data?.related_product;
-  const [currentImage, setCurrentImage] = useState(product?.images?.[0].url);
+  
+  const product = data?.product;
+  const relatedProducts = data?.related_product;
+  
+  const [currentImage, setCurrentImage] = useState<string>("");
+  const [selectedColor, setSelectedColor] = useState<ProductColor | null>(null);
   const sliderRef = useRef<Slider>(null);
 
   useGSAP(() => {
@@ -34,20 +38,24 @@ export default function ProductDetails() {
     }
   };
 
+  const handleColorClick = (color: ProductColor) => {
+    if (color.color_image) {
+      setCurrentImage(color.color_image);
+      setSelectedColor(color);
+    }
+  };
+
   const { t, i18n } = useTranslation();
-  let categoryName =
-    i18n.language == "ar"
-      ? product?.category_name.name_ar
-      : product?.category_name.name_en;
-  let productName = i18n.language == "ar" ? product?.name_ar : product?.name_en;
+  const categoryName = i18n.language == "ar"
+    ? product?.category_name.name_ar
+    : product?.category_name.name_en;
+  const productName = i18n.language == "ar" ? product?.name_ar : product?.name_en;
 
   const settingsMain = {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
     infinite: false,
-    // fade: true,
-    // asNavFor: thumbnailSliderRef.current,
     responsive: [
       {
         breakpoint: 1400,
@@ -127,6 +135,7 @@ export default function ProductDetails() {
       },
     ],
   };
+
   const productSpecifications = [
     { label: "Stove Power", value: product?.stove_power, unit: "Kw/h" },
     { label: "Weight", value: product?.weight, unit: "Kg" },
@@ -141,13 +150,22 @@ export default function ProductDetails() {
   ];
 
   useEffect(() => {
-    let numSlides = product?.images?.length;
-    let sliderNav = document.querySelector(".slider-nav");
+    const numSlides = product?.images?.length;
+    const sliderNav = document.querySelector(".slider-nav");
 
-    if (numSlides == 1 || numSlides == 2 || numSlides == 3) {
+    if (numSlides === 1 || numSlides === 2 || numSlides === 3) {
       sliderNav?.classList.add("small-slides");
     } else {
       sliderNav?.classList.remove("small-slides");
+    }
+  }, [product]);
+
+  useEffect(() => {
+    if (product?.images?.[0]?.url) {
+      setCurrentImage(product.images[0].url);
+    }
+    if (product?.product_colors?.[0]) {
+      setSelectedColor(product.product_colors[0]);
     }
   }, [product]);
 
@@ -168,34 +186,52 @@ export default function ProductDetails() {
           <div className="row">
             <aside className="col-xl-5 col-xxl-5 col-md-6">
               <div className="border rounded-4">
-                <Slider
-                  className="product-slick"
-                  {...settingsMain}
-                  ref={sliderRef}
-                >
-                  {product?.images?.map((image: any, index: number) => (
-                    <InnerImageZoom
-                      key={index}
-                      className="rounded-4"
-                      src={image.url}
-                      zoomSrc={image.url}
-                      fullscreenOnMobile
-                      width={550}
-                      height={500}
-                      moveType="drag"
-                    />
-                  ))}
-                </Slider>
+<div className="border rounded-4">
+  {selectedColor && currentImage === selectedColor.color_image ? (
+    // Show single color image when a color is selected
+    <InnerImageZoom
+      className="rounded-4"
+      src={selectedColor.color_image}
+      zoomSrc={selectedColor.color_image}
+      fullscreenOnMobile
+      width={550}
+      height={500}
+      moveType="drag"
+    />
+  ) : (
+    // Show product image slider when no color is selected
+    <Slider
+      className="product-slick"
+      {...settingsMain}
+      ref={sliderRef}
+    >
+      {product?.images?.map((image: Image, index: number) => (
+        <InnerImageZoom
+          key={index}
+          className="rounded-4"
+          src={image.url}
+          zoomSrc={image.url}
+          fullscreenOnMobile
+          width={550}
+          height={500}
+          moveType="drag"
+        />
+      ))}
+    </Slider>
+  )}
+</div>
               </div>
               <div className="mb-3 mt-1">
                 <Slider {...settingsThumbnail} className="slider-nav">
-                  {product?.images?.map((image: any, index: number) => (
+                  {product?.images?.map((image: Image, index: number) => (
                     <img
+                      key={index}
                       className={`rounded-2 border-img ${
                         currentImage !== image.url ? "opacity-75" : ""
                       }`}
                       src={image.url}
                       onClick={() => handleThumbnailClick(image.url, index)}
+                      alt={`Product thumbnail ${index + 1}`}
                     />
                   ))}
                 </Slider>
@@ -208,24 +244,51 @@ export default function ProductDetails() {
                 <h4 className="title text-dark mb-4 product-title">
                   {productName}
                 </h4>
-                {product?.category_id === 2 ||
-                  (product?.category_id === 5 && (
-                    <>
-                      <hr className="w-90" />
-                      <div
-                        className="d-flex align-items-center justify-content-center p-2 w-btn-25 rounded mb-4"
-                        style={{
-                          background: "#8cc63f",
-                          color: "white",
-                          fontWeight: "600",
-                        }}
-                      >
-                        {t("Product details")}
-                      </div>
-                    </>
-                  ))}
+                
+                {/* Product Colors Section */}
+                {product?.product_colors && product.product_colors.length > 0 && (
+                  <div className="mb-4">
+                    <h5 className="mb-2">{t("Colors")}</h5>
+                    <div className="d-flex gap-2 flex-wrap">
+                      {product.product_colors.map((colorItem: ProductColor) => (
+                        <div
+                          key={colorItem.id}
+                          onClick={() => handleColorClick(colorItem)}
+                          className={`border rounded p-1 ${
+                            selectedColor?.id === colorItem.id ? "border-success border-2" : "border-secondary"
+                          }`}
+                          style={{ cursor: "pointer", width: "60px", height: "60px" }}
+                        >
+                          <img
+                            src={colorItem.color_image}
+                            alt={colorItem.color}
+                            className="w-100 h-100 rounded"
+                            style={{ objectFit: "cover" }}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                
+                {(Number(product?.category_id) === 2 ||
+                  Number(product?.category_id) === 5) && (
+                  <>
+                    <hr className="w-90" />
+                    <div
+                      className="d-flex align-items-center justify-content-center p-2 w-btn-25 rounded mb-4"
+                      style={{
+                        background: "#8cc63f",
+                        color: "white",
+                        fontWeight: "600",
+                      }}
+                    >
+                      {t("Product details")}
+                    </div>
+                  </>
+                )}
                 <div className="row gap-3 justify-content-center justify-content-lg-start mb-4">
-                  {product?.category_id === 5 ? (
+                  {Number(product?.category_id) === 5 ? (
                     <div className="w-90">
                       {product?.spec_tables?.map((table: any) => (
                         <div key={table.id} className="mt-1">
@@ -260,7 +323,9 @@ export default function ProductDetails() {
                                           fontWeight: 600,
                                         }}
                                       >
-                                        {i18n.language === 'en' ? col.name_en : col.name}
+                                        {i18n.language === "en"
+                                          ? col.name_en
+                                          : col.name}
                                         {col.unit && (
                                           <span
                                             style={{
@@ -290,9 +355,9 @@ export default function ProductDetails() {
                                         style={{
                                           fontWeight: 600,
                                           color: "#333",
-                                          textWrap:'nowrap'
+                                          textWrap: "nowrap",
                                         }}
-                                        className="bg-light "
+                                        className="bg-light"
                                       >
                                         {row.label}
                                       </td>
@@ -310,7 +375,8 @@ export default function ProductDetails() {
                         </div>
                       ))}
                     </div>
-                  ) : product?.category_id === 2 || product?.category_id === 4 ? (
+                  ) : Number(product?.category_id) === 2 ||
+                    Number(product?.category_id) === 4 ? (
                     <>
                       {productSpecifications?.map(
                         (item, index) =>
@@ -346,11 +412,11 @@ export default function ProductDetails() {
                 </div>
                 <div className="border rounded-2 px-3 py-2 bg-white w-90">
                   <ul
-                    className=" nav-pills nav-justified mb-3 p-0"
+                    className="nav-pills nav-justified mb-3 p-0"
                     id="ex1"
                     role="tablist"
                   >
-                    <li className=" d-flex" role="presentation">
+                    <li className="d-flex" role="presentation">
                       <div
                         className="d-flex align-items-center justify-content-center p-2 w-btn-25 rounded"
                         style={{
@@ -370,29 +436,17 @@ export default function ProductDetails() {
                       role="tabpanel"
                       aria-labelledby="ex1-tab-1"
                     >
-<p>
-  <div 
-    dangerouslySetInnerHTML={{ 
-      __html: i18n.language === "ar" 
-        ? product?.description_ar || "" 
-        : product?.description_en || "" 
-    }} 
-  />
-</p>
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html:
+                            i18n.language === "ar"
+                              ? product?.description_ar || ""
+                              : product?.description_en || "",
+                        }}
+                      />
                     </div>
                   </div>
                 </div>
-                {/* <div className="mt-5">
-                                    <h3>Simple check list</h3>
-                                    <ul className="check-list">
-                                        <li className="text-dark mb-3">Key feature</li>
-                                        <li>Lorem, ipsum dolor sit amet consectetur</li>
-                                        <li>Lorem, ipsum dolor sit amet consectetur</li>
-                                        <li>Lorem, ipsum dolor sit amet consectetur</li>
-                                        <li>Lorem, ipsum dolor sit amet consectetur</li>
-
-                                    </ul>
-                                </div> */}
               </div>
             </main>
           </div>
@@ -430,14 +484,6 @@ export default function ProductDetails() {
                             available={item?.available}
                           />
                         </div>
-                        // <div className="d-flex mb-3 gap-2" key={index}>
-                        //     <Link to={`/product-details/${item?.id}`} className="m-1">
-                        //         <img src={item?.images?.[0]?.url} style={{ minWidth: "96px", height: "96px" }} className="img-md img-thumbnail" />
-                        //     </Link>
-                        //     <div className="info d-flex align-items-center">
-                        //         <strong className="text-dark"> {i18n.language == 'ar' ? item?.name_ar : item?.name_en}</strong>
-                        //     </div>
-                        // </div>
                       ))}
                   </div>
                 </div>

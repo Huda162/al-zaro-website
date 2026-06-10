@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { API_URL } from "../../constants/API_URL";
-import { Prdouct } from "../../interfaces/product";
 import { Category } from "../../interfaces/category";
 import { Social } from "../../interfaces/socail";
+import { Product } from "../../interfaces/product";
 
 export interface useFetchDataProps {
     endpoint: string;
@@ -13,8 +13,8 @@ export interface useFetchDataProps {
 
 interface dataResponse {
     categories: Category[]
-    product: Prdouct
-    related_product: Prdouct[]
+    product: Product
+    related_product: Product[]
     socials: Social[]
 }
 export default function useFetchData({ endpoint, params }: useFetchDataProps) {
