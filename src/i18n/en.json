@@ -144,5 +144,6 @@
     "Year": "Year",
     "Customer": "Customer",
     "Fireplace": "Fireplace",
-    "Colors":"Sizes"
+    "Colors":"Sizes",
+    "subcategories":"Subcategories"
 }

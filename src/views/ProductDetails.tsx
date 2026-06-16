@@ -19,10 +19,10 @@ export default function ProductDetails() {
     endpoint: `products/${param.id}`,
     params: "",
   });
-  
+
   const product = data?.product;
   const relatedProducts = data?.related_product;
-  
+
   const [currentImage, setCurrentImage] = useState<string>("");
   const [selectedColor, setSelectedColor] = useState<ProductColor | null>(null);
   const sliderRef = useRef<Slider>(null);
@@ -46,10 +46,12 @@ export default function ProductDetails() {
   };
 
   const { t, i18n } = useTranslation();
-  const categoryName = i18n.language == "ar"
-    ? product?.category_name.name_ar
-    : product?.category_name.name_en;
-  const productName = i18n.language == "ar" ? product?.name_ar : product?.name_en;
+  const categoryName =
+    i18n.language == "ar"
+      ? product?.category_name.name_ar
+      : product?.category_name.name_en;
+  const productName =
+    i18n.language == "ar" ? product?.name_ar : product?.name_en;
 
   const settingsMain = {
     slidesToShow: 1,
@@ -186,40 +188,41 @@ export default function ProductDetails() {
           <div className="row">
             <aside className="col-xl-5 col-xxl-5 col-md-6">
               <div className="border rounded-4">
-<div className="border rounded-4">
-  {selectedColor && currentImage === selectedColor.color_image ? (
-    // Show single color image when a color is selected
-    <InnerImageZoom
-      className="rounded-4"
-      src={selectedColor.color_image}
-      zoomSrc={selectedColor.color_image}
-      fullscreenOnMobile
-      width={550}
-      height={500}
-      moveType="drag"
-    />
-  ) : (
-    // Show product image slider when no color is selected
-    <Slider
-      className="product-slick"
-      {...settingsMain}
-      ref={sliderRef}
-    >
-      {product?.images?.map((image: Image, index: number) => (
-        <InnerImageZoom
-          key={index}
-          className="rounded-4"
-          src={image.url}
-          zoomSrc={image.url}
-          fullscreenOnMobile
-          width={550}
-          height={500}
-          moveType="drag"
-        />
-      ))}
-    </Slider>
-  )}
-</div>
+                <div className="border rounded-4">
+                  {selectedColor &&
+                  currentImage === selectedColor.color_image ? (
+                    // Show single color image when a color is selected
+                    <InnerImageZoom
+                      className="rounded-4"
+                      src={selectedColor.color_image}
+                      zoomSrc={selectedColor.color_image}
+                      fullscreenOnMobile
+                      width={550}
+                      height={500}
+                      moveType="drag"
+                    />
+                  ) : (
+                    // Show product image slider when no color is selected
+                    <Slider
+                      className="product-slick"
+                      {...settingsMain}
+                      ref={sliderRef}
+                    >
+                      {product?.images?.map((image: Image, index: number) => (
+                        <InnerImageZoom
+                          key={index}
+                          className="rounded-4"
+                          src={image.url}
+                          zoomSrc={image.url}
+                          fullscreenOnMobile
+                          width={550}
+                          height={500}
+                          moveType="drag"
+                        />
+                      ))}
+                    </Slider>
+                  )}
+                </div>
               </div>
               <div className="mb-3 mt-1">
                 <Slider {...settingsThumbnail} className="slider-nav">
@@ -236,6 +239,53 @@ export default function ProductDetails() {
                   ))}
                 </Slider>
               </div>
+              {(Number(product?.category_id) === 2 ||
+                Number(product?.category_id) === 4) && (
+                <>
+                  <hr />
+                  <div
+                    className="d-flex align-items-center justify-content-center p-2 w-btn-25 rounded mb-3"
+                    style={{
+                      background: "#8cc63f",
+                      color: "white",
+                      fontWeight: "600",
+                    }}
+                  >
+                    {t("Product details")}
+                  </div>
+                  <div className="row gap-3 justify-content-center mb-4">
+                    {productSpecifications?.map(
+                      (item, index) =>
+                        item.value &&
+                        item.value !== "undefined" && (
+                          <div
+                            key={index}
+                            className="col-5 bg-light rounded text-center"
+                            style={{ padding: "20px 0px 5px" }}
+                          >
+                            <h5
+                              dangerouslySetInnerHTML={{
+                                __html: `${t(item?.label)} `,
+                              }}
+                              style={{ fontWeight: "600" }}
+                            />
+                            <span
+                              dir="ltr"
+                              style={{
+                                fontSize: "1.2rem",
+                                fontWeight: "600",
+                                textAlign: "center",
+                              }}
+                              dangerouslySetInnerHTML={{
+                                __html: `${item.value} <span class="unit">${item.unit}</span>`,
+                              }}
+                            />
+                          </div>
+                        )
+                    )}
+                  </div>
+                </>
+              )}
             </aside>
 
             <main className="col-xl-7 col-xxl-7 col-md-6">
@@ -244,35 +294,43 @@ export default function ProductDetails() {
                 <h4 className="title text-dark mb-4 product-title">
                   {productName}
                 </h4>
-                
+
                 {/* Product Colors Section */}
-                {product?.product_colors && product.product_colors.length > 0 && (
-                  <div className="mb-4">
-                    <h5 className="mb-2">{t("Colors")}</h5>
-                    <div className="d-flex gap-2 flex-wrap">
-                      {product.product_colors.map((colorItem: ProductColor) => (
-                        <div
-                          key={colorItem.id}
-                          onClick={() => handleColorClick(colorItem)}
-                          className={`border rounded p-1 ${
-                            selectedColor?.id === colorItem.id ? "border-success border-2" : "border-secondary"
-                          }`}
-                          style={{ cursor: "pointer", width: "60px", height: "60px" }}
-                        >
-                          <img
-                            src={colorItem.color_image}
-                            alt={colorItem.color}
-                            className="w-100 h-100 rounded"
-                            style={{ objectFit: "cover" }}
-                          />
-                        </div>
-                      ))}
+                {product?.product_colors &&
+                  product.product_colors.length > 0 && (
+                    <div className="mb-4">
+                      <h5 className="mb-2">{t("Colors")}</h5>
+                      <div className="d-flex gap-2 flex-wrap">
+                        {product.product_colors.map(
+                          (colorItem: ProductColor) => (
+                            <div
+                              key={colorItem.id}
+                              onClick={() => handleColorClick(colorItem)}
+                              className={`border rounded p-1 ${
+                                selectedColor?.id === colorItem.id
+                                  ? "border-success border-2"
+                                  : ""
+                              }`}
+                              style={{
+                                cursor: "pointer",
+                                width: "60px",
+                                height: "60px",
+                              }}
+                            >
+                              <img
+                                src={colorItem.color_image}
+                                alt={colorItem.color}
+                                className="w-100 h-100 rounded"
+                                style={{ objectFit: "cover" }}
+                              />
+                            </div>
+                          )
+                        )}
+                      </div>
                     </div>
-                  </div>
-                )}
-                
-                {(Number(product?.category_id) === 2 ||
-                  Number(product?.category_id) === 5) && (
+                  )}
+
+                {Number(product?.category_id) === 5 && (
                   <>
                     <hr className="w-90" />
                     <div
@@ -375,39 +433,6 @@ export default function ProductDetails() {
                         </div>
                       ))}
                     </div>
-                  ) : Number(product?.category_id) === 2 ||
-                    Number(product?.category_id) === 4 ? (
-                    <>
-                      {productSpecifications?.map(
-                        (item, index) =>
-                          item.value &&
-                          item.value !== "undefined" && (
-                            <div
-                              key={index}
-                              className="col-md-3 col-5 bg-light rounded text-center"
-                              style={{ padding: "20px 0px 5px" }}
-                            >
-                              <h5
-                                dangerouslySetInnerHTML={{
-                                  __html: `${t(item?.label)} `,
-                                }}
-                                style={{ fontWeight: "600" }}
-                              />
-                              <span
-                                dir="ltr"
-                                style={{
-                                  fontSize: "1.2rem",
-                                  fontWeight: "600",
-                                  textAlign: "center",
-                                }}
-                                dangerouslySetInnerHTML={{
-                                  __html: `${item.value} <span class="unit">${item.unit}</span>`,
-                                }}
-                              />
-                            </div>
-                          )
-                      )}
-                    </>
                   ) : null}
                 </div>
                 <div className="border rounded-2 px-3 py-2 bg-white w-90">
