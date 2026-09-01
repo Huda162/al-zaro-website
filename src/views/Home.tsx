@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import StickyHeader from "../components/StickyHeader";
 import useHomeAnimation from "../hooks/animation/useHomeAmimation";
+import ChatWidget from "../components/ChatWidget";
 
 export default function Home() {
     const videoRef = useRef<HTMLVideoElement>(null)
@@ -42,7 +43,7 @@ export default function Home() {
                     </video>
                 </div>
             </div>
-
+            {/* <ChatWidget productId="aria-planter" productName="the Aria Planter" /> */}
         </div>
 
     )

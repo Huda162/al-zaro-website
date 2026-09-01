@@ -145,5 +145,6 @@
     "Customer": "Customer",
     "Fireplace": "Fireplace",
     "Colors":"Sizes",
-    "subcategories":"Subcategories"
+    "subcategories":"Subcategories",
+    "of":"of"
 }

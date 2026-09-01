@@ -112,7 +112,7 @@
     "Browse": "تصفح",
     "products": "المنتجات ",
     "Search product...": "ابحث عن منتج",
-    "results": "النتائج",
+    "results": "من النتائج",
     "Showing all": "عرض",
     "Product details": "تفاصيل المنتج",
     "Stove Power": "قدرة الموقد",
@@ -147,5 +147,6 @@
     "Customer": "عميل",
     "Fireplace": "مدفأة",
     "Colors":"الأحجام",
-    "subcategories":"الأقسام الفرعية"
+    "subcategories":"الأقسام الفرعية",
+    "of":"من"
 }

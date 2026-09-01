@@ -1,12 +1,22 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { API_URL } from "../../constants/API_URL"
-import { Prdouct } from "../../interfaces/product"
+import { Product } from "../../interfaces/product"
 
 
 interface filteredProductResponse {
-    data: Prdouct[]
+    data: Product[]
+    total: number
+    links: any[]
+    current_page: number
+    last_page: number
+    per_page: number
+    from: number
+    to: number
+    next_page_url: string | null
+    prev_page_url: string | null
 }
+
 const useFilterProducts = (param: any) => {
 
     const [filteredProducts, setFilteredProducts] = useState<filteredProductResponse>()
@@ -16,26 +26,34 @@ const useFilterProducts = (param: any) => {
     const [filters, setFilters] = useState({
         categoryId: Number(param.id),
         sortBy: '',
-        name: ''
+        name: '',
+        page: 1
     })
 
     useEffect(() => {
         setFilters(prev => ({
             ...prev,
-            categoryId: Number(param.id)
+            categoryId: Number(param.id),
+            page: 1
         }));
     }, [param.id])
 
 
     const handleSortChange = (sortBy: string) => {
         setFilters(prev => ({
-            ...prev, sortBy: sortBy,
+            ...prev, sortBy: sortBy, page: 1
         }))
     }
 
     const handleNameChange = (name: string) => {
         setFilters(prev => ({
-            ...prev, name: name
+            ...prev, name: name, page: 1
+        }))
+    }
+
+    const handlePageChange = (page: number) => {
+        setFilters(prev => ({
+            ...prev, page: page
         }))
     }
 
@@ -44,6 +62,7 @@ const useFilterProducts = (param: any) => {
         const params: any = {}
 
         params.category_id = filters.categoryId
+        params.page = filters.page
 
         if (filters.sortBy == 'latest') {
             params.latest = filters.sortBy
@@ -77,6 +96,7 @@ const useFilterProducts = (param: any) => {
         handleSortChange,
         filterProduct,
         handleNameChange,
+        handlePageChange,
         filteredProducts,
         filters,
         loading,
